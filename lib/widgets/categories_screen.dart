@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../dummy_data.dart';
 import 'category_item.dart';
@@ -10,7 +12,10 @@ class CategoriesPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Deli Meals',
-          style: Theme.of(context).textTheme.headline1,
+          style: GoogleFonts.lato(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
       ),
@@ -25,6 +30,7 @@ class CategoriesPage extends StatelessWidget {
           ),
           children: DUMMY_CATEGORIES
               .map((e) => CategoryItem(
+                    id: e.id,
                     title: e.title,
                     color: e.color,
                   ))
