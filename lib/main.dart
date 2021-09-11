@@ -1,13 +1,21 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'screens/meal_deatails_screen.dart';
 import 'screens/category_meals_screen.dart';
 import 'screens/categories_screen.dart';
 
-void main() => runApp(DeliMealsApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  runApp(DeliMealsApp());
+}
 
 class DeliMealsApp extends StatelessWidget {
   @override
@@ -26,7 +34,7 @@ class DeliMealsApp extends StatelessWidget {
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               )),
-          colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.amber),
+          colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey),
         ),
         debugShowCheckedModeBanner: false,
         routes: {

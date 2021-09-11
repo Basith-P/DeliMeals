@@ -4,52 +4,82 @@ import 'package:flutter/material.dart';
 class MealDetailsScreen extends StatelessWidget {
   static const routName = '/meal-details';
 
+  Widget buildSectionTitle(BuildContext context, String title) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 20),
+      child: Text(
+        title,
+        style: Theme.of(context).textTheme.headline6,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final mealId = ModalRoute.of(context).settings.arguments;
     final selectedMeal = DUMMY_MEALS.firstWhere((element) => element.id == mealId);
+    final appBar = AppBar(
+      title: Text(selectedMeal.title),
+    );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(selectedMeal.title),
-        centerTitle: true,
-      ),
+      appBar: appBar,
       body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              height: 300,
-              width: double.infinity,
-              child: Image.network(
-                selectedMeal.imageUrl,
-                fit: BoxFit.cover,
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              Container(
+                height: 300,
+                width: double.infinity,
+                child: Image.network(
+                  selectedMeal.imageUrl,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 20),
-              child: Text(
-                'Ingredients',
-                style: Theme.of(context).textTheme.headline6,
+              const SizedBox(height: 20),
+              buildSectionTitle(context, 'Ingredients'),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                width: double.infinity,
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  separatorBuilder: (context, index) {
+                    return Divider();
+                  },
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: selectedMeal.ingredients.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      title: Text(selectedMeal.ingredients[index]),
+                    );
+                  },
+                ),
               ),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              width: double.infinity,
-              height: 300,
-              child: ListView.builder(
-                itemCount: selectedMeal.ingredients.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Card(
-                    color: Colors.grey[900],
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                      child: Text(selectedMeal.ingredients[index]),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              buildSectionTitle(context, 'Steps'),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                // height: selectedMeal.steps.length.toDouble() * 100,
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  separatorBuilder: (context, index) {
+                    return Divider();
+                  },
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: selectedMeal.steps.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      leading: CircleAvatar(
+                        child: Text('${index + 1}'),
+                      ),
+                      title: Text(selectedMeal.steps[index]),
+                    );
+                  },
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

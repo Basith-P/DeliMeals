@@ -21,6 +21,7 @@ class CategoriesPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: GridView(
+          physics: BouncingScrollPhysics(),
           padding: const EdgeInsets.all(15),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
