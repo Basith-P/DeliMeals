@@ -18,20 +18,23 @@ class CategoryMealsScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(routeArgs['title']),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: ListView.builder(
-            physics: BouncingScrollPhysics(),
-            itemBuilder: (ctx, index) {
-              return MealItem(
-                title: catMeals[index].title,
-                imageUrl: catMeals[index].imageUrl,
-                duration: catMeals[index].duration,
-                complexity: catMeals[index].complexity,
-                affordability: catMeals[index].affordability,
-              );
-            },
-            itemCount: catMeals.length,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ListView.builder(
+              physics: BouncingScrollPhysics(),
+              itemBuilder: (ctx, index) {
+                return MealItem(
+                  id: catMeals[index].id,
+                  title: catMeals[index].title,
+                  imageUrl: catMeals[index].imageUrl,
+                  duration: catMeals[index].duration,
+                  complexity: catMeals[index].complexity,
+                  affordability: catMeals[index].affordability,
+                );
+              },
+              itemCount: catMeals.length,
+            ),
           ),
         ));
   }

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'screens/meal_deatails_screen.dart';
 import 'screens/category_meals_screen.dart';
 import 'screens/categories_screen.dart';
 
@@ -31,6 +32,7 @@ class DeliMealsApp extends StatelessWidget {
         routes: {
           '/': (ctx) => CategoriesPage(),
           CategoryMealsScreen.routName: (ctx) => CategoryMealsScreen(),
+          MealDetailsScreen.routName: (ctx) => MealDetailsScreen(),
         });
   }
 }

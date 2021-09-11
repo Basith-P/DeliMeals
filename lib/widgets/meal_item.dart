@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '/screens/meal_deatails_screen.dart';
 import '/models/meal.dart';
 
 class MealItem extends StatelessWidget {
+  final String id;
   final String title;
   final String imageUrl;
   final int duration;
@@ -10,6 +12,7 @@ class MealItem extends StatelessWidget {
   final Affordability affordability;
 
   MealItem({
+    @required this.id,
     @required this.title,
     @required this.imageUrl,
     @required this.duration,
@@ -46,7 +49,12 @@ class MealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).pushNamed(
+          MealDetailsScreen.routName,
+          arguments: id,
+        );
+      },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         elevation: 4,
@@ -88,33 +96,28 @@ class MealItem extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               color: Colors.black54,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        Icon(Icons.schedule_rounded),
-                        const SizedBox(width: 5),
-                        Text('$duration min'),
-                      ],
-                    ),
+                  Row(
+                    children: [
+                      Icon(Icons.schedule_rounded),
+                      const SizedBox(width: 5),
+                      Text('$duration min'),
+                    ],
                   ),
-                  Expanded(
-                    child: Row(
-                      children: [
-                        Icon(Icons.work_outline_outlined),
-                        const SizedBox(width: 5),
-                        Text(complexityText),
-                      ],
-                    ),
+                  Row(
+                    children: [
+                      Icon(Icons.work_outline_outlined),
+                      const SizedBox(width: 5),
+                      Text(complexityText),
+                    ],
                   ),
-                  Expanded(
-                    child: Row(
-                      children: [
-                        Icon(Icons.attach_money_rounded),
-                        const SizedBox(width: 5),
-                        Text(affordabilityText),
-                      ],
-                    ),
+                  Row(
+                    children: [
+                      Icon(Icons.attach_money_rounded),
+                      const SizedBox(width: 5),
+                      Text(affordabilityText),
+                    ],
                   ),
                 ],
               ),
