@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../dummy_data.dart';
-import 'category_item.dart';
+import '../widgets/category_item.dart';
 
 class CategoriesPage extends StatelessWidget {
   @override
