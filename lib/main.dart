@@ -23,7 +23,7 @@ class DeliMealsApp extends StatelessWidget {
     return MaterialApp(
         title: 'DeliMeals',
         theme: ThemeData.dark().copyWith(
-          canvasColor: Color.fromRGBO(255, 254, 229, 1),
+          canvasColor: Colors.grey[900],
           scaffoldBackgroundColor: Color(0xff0C0B10),
           appBarTheme: AppBarTheme(
             backgroundColor: Color(0xff0C0B10),

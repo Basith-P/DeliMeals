@@ -51,7 +51,11 @@ class MealDetailsScreen extends StatelessWidget {
                   itemCount: selectedMeal.ingredients.length,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
-                      title: Text(selectedMeal.ingredients[index]),
+                      title: Text(
+                        selectedMeal.ingredients[index],
+                        textAlign: TextAlign.center,
+                      ),
+                      visualDensity: VisualDensity.compact,
                     );
                   },
                 ),
