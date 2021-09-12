@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'screens/filters_screen.dart';
 import 'screens/tabs_screen.dart';
 import 'screens/meal_deatails_screen.dart';
 import 'screens/category_meals_screen.dart';
@@ -41,6 +42,7 @@ class DeliMealsApp extends StatelessWidget {
           '/': (ctx) => TabsScreen(),
           CategoryMealsScreen.routName: (ctx) => CategoryMealsScreen(),
           MealDetailsScreen.routName: (ctx) => MealDetailsScreen(),
+          FiltersScreen.routName: (ctx) => FiltersScreen(),
         });
   }
 }
