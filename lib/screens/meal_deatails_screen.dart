@@ -64,7 +64,6 @@ class MealDetailsScreen extends StatelessWidget {
               buildSectionTitle(context, 'Steps'),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
-                // height: selectedMeal.steps.length.toDouble() * 100,
                 child: ListView.separated(
                   shrinkWrap: true,
                   separatorBuilder: (context, index) {
