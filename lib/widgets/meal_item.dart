@@ -10,7 +10,6 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
-  final Function removeItem;
 
   MealItem({
     @required this.id,
@@ -19,7 +18,6 @@ class MealItem extends StatelessWidget {
     @required this.duration,
     @required this.complexity,
     @required this.affordability,
-    @required this.removeItem,
   });
 
   String get complexityText {
@@ -52,12 +50,10 @@ class MealItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .pushNamed(
-              MealDetailsScreen.routName,
-              arguments: id,
-            )
-            .then((value) => value != null ? removeItem : null);
+        Navigator.of(context).pushNamed(
+          MealDetailsScreen.routName,
+          arguments: id,
+        );
       },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
