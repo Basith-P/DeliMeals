@@ -60,6 +60,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   'vegetarian': _vegetarian,
                 };
                 widget.saveFilters(selectedFilters);
+                Navigator.pushReplacementNamed(context, '/');
               },
               icon: Icon(
                 Icons.save_outlined,
@@ -68,7 +69,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
             ),
           ],
         ),
-        drawer: MainDrawer(),
+        // drawer: MainDrawer(),
         body: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
