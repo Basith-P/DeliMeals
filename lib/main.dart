@@ -18,7 +18,19 @@ void main() {
   runApp(DeliMealsApp());
 }
 
-class DeliMealsApp extends StatelessWidget {
+class DeliMealsApp extends StatefulWidget {
+  @override
+  State<DeliMealsApp> createState() => _DeliMealsAppState();
+}
+
+class _DeliMealsAppState extends State<DeliMealsApp> {
+  Map<String, bool> _filters = {
+    'gluten': false,
+    'lactose': false,
+    'vegan': false,
+    'vegetarian': false,
+  };
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
