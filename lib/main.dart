@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'dummy_data.dart';
+import 'models/meal.dart';
 import 'screens/filters_screen.dart';
 import 'screens/tabs_screen.dart';
 import 'screens/meal_deatails_screen.dart';
@@ -30,6 +32,29 @@ class _DeliMealsAppState extends State<DeliMealsApp> {
     'vegan': false,
     'vegetarian': false,
   };
+  List<Meal> _availableMeals = DUMMY_MEALS;
+
+  void _setFilters(Map<String, bool> filterData) {
+    setState(() {
+      _filters = filterData;
+
+      _availableMeals = DUMMY_MEALS.where((meal) {
+        if (_filters['gluten'] && !meal.isGlutenFree) {
+          return false;
+        }
+        if (_filters['lactose'] && !meal.isLactoseFree) {
+          return false;
+        }
+        if (_filters['vegan'] && !meal.isVegan) {
+          return false;
+        }
+        if (_filters['vegetarian'] && !meal.isVegetarian) {
+          return false;
+        }
+        return true;
+      }).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +77,9 @@ class _DeliMealsAppState extends State<DeliMealsApp> {
         debugShowCheckedModeBanner: false,
         routes: {
           '/': (ctx) => TabsScreen(),
-          CategoryMealsScreen.routName: (ctx) => CategoryMealsScreen(),
+          CategoryMealsScreen.routName: (ctx) => CategoryMealsScreen(_availableMeals),
           MealDetailsScreen.routName: (ctx) => MealDetailsScreen(),
-          FiltersScreen.routName: (ctx) => FiltersScreen(),
+          FiltersScreen.routName: (ctx) => FiltersScreen(_filters, _setFilters),
         });
   }
 }
